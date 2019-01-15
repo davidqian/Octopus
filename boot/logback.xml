@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are by default assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/console.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${log.home}/console.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 过滤掉ERROR级别的日志 -->
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="SYSTEM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/system.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${log.home}/system.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/error.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${log.home}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <appender name="DATA" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/data.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${log.home}/data.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+            <maxHistory>72</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STATISTICS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/statistics/statistics.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- minutely rollover -->
+            <fileNamePattern>${log.home}/statistics/%d{yyyyMMdd, aux}/statistics.%d{yyyyMMddHHmm}.log</fileNamePattern>
+            <maxHistory>14400</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-4level %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="ELOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/elog/elog.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- minutely rollover -->
+            <fileNamePattern>${log.home}/elog/elog%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-4level %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="PROTOCOL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/protocol.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- minutely rollover -->
+            <fileNamePattern>${log.home}/protocol%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CASTLEINFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/castleInfo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- minutely rollover -->
+            <fileNamePattern>${log.home}/castleInfo.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SWITCH" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.home}/switch.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- minutely rollover -->
+            <fileNamePattern>${log.home}/switch.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss} %-5level [%thread][%file:%line] : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.octopus.war.common.log.SystemLogger" level="DEBUG">
+        <appender-ref ref="SYSTEM"/>
+    </logger>
+
+    <logger name="com.octopus.war.log.DataLogger" level="DATA">
+        <appender-ref ref="DATA"/>
+    </logger>
+
+    <logger name="com.octopus.Octopus.util.StatisticsUtil" level="INFO" additivity="false">
+        <appender-ref ref="STATISTICS"/>
+    </logger>
+
+    <logger name="com.octopus.war.gvg.utils.ELogUtil" level="INFO" additivity="false">
+        <appender-ref ref="ELOG"/>
+    </logger>
+
+    <logger name="com.octopus.war.gvg.utils.ProtocolLogUtil" level="INFO" additivity="false">
+        <appender-ref ref="PROTOCOL"/>
+    </logger>
+
+    <logger name="com.octopus.war.common.log.CastleInfoLogger" level="INFO" additivity="false">
+        <appender-ref ref="CASTLEINFO"/>
+    </logger>
+
+    <logger name="com.octopus.war.common.log.SwitchLogUtil" level="INFO" additivity="false">
+        <appender-ref ref="SWITCH"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ERROR"/>
+    </root>
+
+</configuration>
